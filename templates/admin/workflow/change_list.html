@@ -1,0 +1,11 @@
+{% extends "admin/change_list.html" %} {% load i18n %}
+
+{% block object-tools-items %}
+    {{ block.super }}
+    <li>
+        <a class="historylink" href="{% url 'admin:qualification_hits' %}">Create Qualification Hits</a>
+    </li>
+    <li>
+        <a class="historylink" href="{% url 'admin:labeling_hits_for_workflow_3' %}">Create Workflow-3 Hits</a>
+    </li>
+{% endblock %}

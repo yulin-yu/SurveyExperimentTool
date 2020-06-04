@@ -1,0 +1,282 @@
+[
+{
+  "model": "workflow.workflow",
+  "pk": 1,
+  "fields": {
+    "api_id": 1,
+    "name": "without evidence url workflow",
+    "instruction": "Open the news item. <b>Skim</b> it for <b>about one minute</b>. You do not need to search for any additional evidence.",
+    "judgment_enough_information": null,
+    "judgment_misleading_item": null,
+    "misinformation_harm": null,
+    "take_action": null,
+    "judgment_remove_reduce_inform_head": null,
+    "judgment_remove": null,
+    "judgment_reduce": null,
+    "judgment_inform": null,
+    "judgment_additional": null,
+    "prediction": "",
+    "corroborating_question": null,
+    "type": "WITHOUT_EVIDENCE_URL_WORKFLOW"
+  }
+},
+{
+  "model": "workflow.workflow",
+  "pk": 2,
+  "fields": {
+    "api_id": 2,
+    "name": "evidence url input workflow",
+    "instruction": "First, open the news item. <b>Skim</b> it for <b>about one minute</b>.",
+    "judgment_enough_information": null,
+    "judgment_misleading_item": null,
+    "misinformation_harm": null,
+    "take_action": null,
+    "judgment_remove_reduce_inform_head": null,
+    "judgment_remove": null,
+    "judgment_reduce": null,
+    "judgment_inform": null,
+    "judgment_additional": "Provide additional information to explain your selection:",
+    "prediction": "",
+    "corroborating_question": "Second, take <b>up to five minutes</b> to search to find evidence that will help you judge the news item. You should look for both <b>supporting and challenging</b> evidence.<br>Did you find any page with evidence you found convincing?</br>",
+    "type": "EVIDENCE_URL_INPUT_WORKFLOW"
+  }
+},
+{
+  "model": "workflow.workflow",
+  "pk": 3,
+  "fields": {
+    "api_id": 3,
+    "name": "evidence urls judgment workflow",
+    "instruction": "First, open the news item. <b>Skim</b> it for <b>about one minute</b>.",
+    "judgment_enough_information": null,
+    "judgment_misleading_item": null,
+    "misinformation_harm": null,
+    "take_action": null,
+    "judgment_remove_reduce_inform_head": null,
+    "judgment_remove": null,
+    "judgment_reduce": null,
+    "judgment_inform": null,
+    "judgment_additional": null,
+    "prediction": "",
+    "corroborating_question": "Which of the following URLs provides the most convincing evidence confirming or contradicting claims in the original item? (You do not need to do your own search for evidence.)",
+    "type": "EVIDENCE_URLS_JUDGMENT_WORKFLOW"
+  }
+},
+{
+  "model": "workflow.workflow",
+  "pk": 4,
+  "fields": {
+    "api_id": 4,
+    "name": "journalist workflow",
+    "instruction": "First, open the news item and read it.",
+    "judgment_enough_information": null,
+    "judgment_misleading_item": null,
+    "misinformation_harm": null,
+    "take_action": null,
+    "judgment_remove_reduce_inform_head": null,
+    "judgment_remove": null,
+    "judgment_reduce": null,
+    "judgment_inform": null,
+    "judgment_additional": null,
+    "prediction": "",
+    "corroborating_question": "Second, search, using a search engine, for evidence that will help you judge the news item. You should look for both <b>supporting and challenging</b> evidence.",
+    "type": "JOURNALIST_WORKFLOW"
+  }
+},
+{
+  "model": "workflow.reducechoices",
+  "pk": 1,
+  "fields": {
+    "title": "Google would not show the item as the first search result but it could appear later..",
+    "is_correct": true
+  }
+},
+{
+  "model": "workflow.reducechoices",
+  "pk": 2,
+  "fields": {
+    "title": "Facebook and Twitter would show posts that link to this news item farther down on the page.",
+    "is_correct": true
+  }
+},
+{
+  "model": "workflow.reducechoices",
+  "pk": 3,
+  "fields": {
+    "title": "Google would not show the item at all in response to user searches.",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.reducechoices",
+  "pk": 4,
+  "fields": {
+    "title": "Facebook and Twitter would not show posts that link to this news item anywhere in user feeds.",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.reducechoices",
+  "pk": 5,
+  "fields": {
+    "title": "Display an icon indicating that the item is misleading.",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.informchoices",
+  "pk": 1,
+  "fields": {
+    "title": "Google would not show the item as the first search result but it could appear later.",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.informchoices",
+  "pk": 2,
+  "fields": {
+    "title": "Facebook and Twitter would show posts that link to this news item farther down on the page.",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.informchoices",
+  "pk": 3,
+  "fields": {
+    "title": "Google would not show the item at all in response to user searches.",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.informchoices",
+  "pk": 4,
+  "fields": {
+    "title": "Facebook and Twitter would not show posts that link to this news item anywhere in user feeds.",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.informchoices",
+  "pk": 5,
+  "fields": {
+    "title": "Display an icon indicating that the item is misleading.",
+    "is_correct": true
+  }
+},
+{
+  "model": "workflow.removechoices",
+  "pk": 1,
+  "fields": {
+    "title": "Google would not show the item as the first search result but it could appear later.",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.removechoices",
+  "pk": 2,
+  "fields": {
+    "title": "Facebook and Twitter would show posts that link to this news item farther down on the page.",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.removechoices",
+  "pk": 3,
+  "fields": {
+    "title": "Google would not show the item at all in response to user searches.",
+    "is_correct": true
+  }
+},
+{
+  "model": "workflow.removechoices",
+  "pk": 4,
+  "fields": {
+    "title": "Facebook and Twitter would not show posts that link to this news item anywhere in user feeds.",
+    "is_correct": true
+  }
+},
+{
+  "model": "workflow.removechoices",
+  "pk": 5,
+  "fields": {
+    "title": "Display an icon indicating that the item is misleading.",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.judgmentrequirementchoices",
+  "pk": 1,
+  "fields": {
+    "title": "Click on the link and skim the contents.",
+    "is_correct": true,
+    "correct_for_workflows": [
+      1,
+      3,
+      2
+    ]
+  }
+},
+{
+  "model": "workflow.judgmentrequirementchoices",
+  "pk": 2,
+  "fields": {
+    "title": "Find supporting or contradicting evidence, using a search engine.",
+    "is_correct": true,
+    "correct_for_workflows": [
+      2
+    ]
+  }
+},
+{
+  "model": "workflow.corroboratingchoices",
+  "pk": 1,
+  "fields": {
+    "title": "The original item, http://www.bestcuppingtreatment.com/files/1997008/uploaded/Cancer_treatment1.htm",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.corroboratingchoices",
+  "pk": 2,
+  "fields": {
+    "title": "Google",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.corroboratingchoices",
+  "pk": 3,
+  "fields": {
+    "title": "Cupping treatment cancer",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.corroboratingchoices",
+  "pk": 4,
+  "fields": {
+    "title": "www.cancer.gov",
+    "is_correct": false
+  }
+},
+{
+  "model": "workflow.corroboratingchoices",
+  "pk": 5,
+  "fields": {
+    "title": "https://www.cancer.gov/about-cancer/",
+    "is_correct": true,
+    "correct_for_workflows": [
+      2
+    ]
+
+  }
+},
+{
+  "model": "workflow.corroboratingchoices",
+  "pk": 6,
+  "fields": {
+    "title": "www.factcheck.org",
+    "is_correct": false
+  }
+}
+]

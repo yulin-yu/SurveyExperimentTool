@@ -1,0 +1,5 @@
+{% extends 'workflow/base_form.html' %}
+
+{% block action %}
+    action="{{ MTURK_WORKER_ENDPOINT }}/mturk/externalSubmit"
+{% endblock %}

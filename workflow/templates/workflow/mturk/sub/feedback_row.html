@@ -1,0 +1,5 @@
+<tr>
+    <td>{{ class|capfirst }}</td>
+    <td><span id="your_{{ class }}">{% if data.your != None %}{{ data.your }} out of 100 ({{ data.your }}%){% else %}No prediction{% endif %}</span></td>
+    <td>{% if labelers_count %}{{ data.count }} out of {{ labelers_count }} ({{ data.percent }}%){% else %}No previous labels{% endif %}</td>
+</tr>

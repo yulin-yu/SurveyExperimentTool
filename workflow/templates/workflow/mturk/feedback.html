@@ -1,0 +1,26 @@
+{% extends 'workflow/mturk_submit_form.html' %}
+
+{% block header %}
+    Feedback
+{% endblock %}
+
+{% block submit_button %}
+    <p>
+        In the future, your answers to the prediction questions will be used as a <b>quality check</b> on your labeling work.
+
+        <br>Please use this feedback to improve your predictions. This feedback should <b>not influence</b> the personal judgments that you report.</br>
+    </p>
+
+    {% include 'workflow/mturk/sub/feedback_table.html' %}
+
+    <input type="submit" name="submit" value="Submit to MTurk" id="submit" class="btn btn-success hidden">
+{% endblock %}
+
+{% block post_content %}
+    <script>
+        $('#feedback-table').show();
+        $('input[name="submit"]').show();
+    </script>
+
+    {{ block.super }}
+{% endblock %}

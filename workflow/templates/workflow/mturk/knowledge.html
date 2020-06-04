@@ -1,0 +1,58 @@
+{% extends 'workflow/base_form.html' %}
+
+{% block header %}
+    Political Knowledge
+{% endblock %}
+
+{% block post_content %}
+    {{ block.super }}
+
+    <style>
+        fieldset {
+            display: none;
+        }
+        fieldset:first-of-type {
+            display: block;
+        }
+    </style>
+
+    <script>
+      let questions = $('fieldset').length;
+      let answered = 0;
+      let timeoutNumber = 15 * 1000;  // 15 seconds
+
+      $('#id_id_pk_1_0_1').parent().parent().hide();
+      $('#id_id_pk_2_0_1').parent().parent().hide();
+      $('#id_id_pk_3_0_1').parent().parent().hide();
+      $('#id_id_pk_4_0_1').parent().parent().hide();
+
+      $('#submit').click(function (e) {
+        $('#submit').val('Next');
+        return nextQuestion();
+      });
+
+      function nextQuestion() {
+        answered = answered + 1;
+        if (answered < questions) {
+          $('fieldset').css('display', 'none');
+          $('fieldset:nth-child(' + (answered + 2) + ')').css('display', 'block ');
+          clearTimeout(timeoutID);
+          timeoutID = setTimeout(intervalNextQuestion, timeoutNumber);
+          return false
+        }
+        return true
+      }
+
+      function intervalNextQuestion() {
+        if (nextQuestion()) {
+          $('#submit').click();
+        }
+      }
+
+    let timeoutID = null;
+    </script>
+{% endblock %}
+
+{% block submit_button_title %}
+    Start
+{% endblock %}

@@ -1,0 +1,25 @@
+{% load crispy_forms_tags %}
+
+    <h3>Read</h3>
+
+    {% if form.errors %}
+        <p class="invalid-feedback">
+            Please check for required fields that you might have missed.
+        </p>
+    {% endif %}
+    {{ form.non_field_errors }}
+
+    <p>
+        {% autoescape off %}
+            {{ workflow.instruction }}
+        {% endautoescape %}
+    </p>
+    <p>
+        <a href="{% url 'workflow:redirect' %}?to={{ item.url_quoted }}&item_id={{ item.pk }}&workerId={{ worker_id }}&click_type=item_link"
+           target="_blank" id="item_link">
+            News Item to Assess
+        </a>
+        (click to open in new tab)
+    </p>
+
+    {% crispy form %}

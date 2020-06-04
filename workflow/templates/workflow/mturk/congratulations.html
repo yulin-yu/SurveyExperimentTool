@@ -1,0 +1,28 @@
+{% extends 'workflow/mturk_submit_form.html' %}
+
+{% block header %}
+    Congratulations
+{% endblock %}
+
+{% block content %}
+    <p>
+        Thank you for completing the qualification task.
+    </p><p>
+    You have been <b>assigned to work group {{ workgroup }}</b>, whose assignments will now be available to you.
+    </p><p>
+    Search for "CSMR" to find HITs from us.
+    </p><p>
+        <b>Note: we are still in pilot testing, so only a few labeling HITs will be available until we are sure everything is working.</b>
+    </p><p>
+        Note that different work groups have different labeling tasks.
+        Some groups have tasks that require more time, so their HITs have higher pay per HIT.
+        The hourly pay, however, is the same for the different groups.
+    </p><p>
+        You will only be able to participate in one work group, the one to which you have already been assigned.
+    </p>
+    {{ block.super }}
+{% endblock %}
+
+{% block submit_button_title %}
+    Done
+{% endblock %}

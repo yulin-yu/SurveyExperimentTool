@@ -1,0 +1,139 @@
+<script>
+  let prediction_validation_on = {% if journalist_workflow %}false;{% else %}true;{% endif %};
+  let donePressed = false;  // used for /labelone page only
+
+  function getFormValue(inputName) {
+    return $('input[name="' + inputName + '"]:checked').val();
+  }
+
+  function scrollTo(id) {
+    $([document.documentElement, document.body]).scrollTop($(id).offset().top);
+  }
+
+  function processJudgment(initialRun) {
+      // used to have a judgment question, but now just treat it as if they answered yes to that
+      $('#assessment_fieldset').show();
+      $('input[name="submit"]').hide();
+      prediction_validation_on = {% if journalist_workflow %}false;{% else %}true;{% endif %}
+      // show other things based on previous answers
+      if (getFormValue('misinformation_harm')) {
+        processMisinformationHarm();
+        // scroll to next element
+        scrollTo('#assessment_fieldset');
+      }
+      if (initialRun === true) {
+        // that's the case when we have some errors from backend
+        scrollTo('#form');
+      }
+  }
+
+  function processMisinformationHarm(){
+    {% if journalist_workflow %}
+      $('input[name="submit"]').show();
+      scrollTo('#submit');
+    {% else %}
+      // clicked on something in the last part of assessment_fieldset
+      // so show any_action_fieldset
+      $('#any_action_fieldset').show();
+      // show other things based on previous answers
+      if (getFormValue('take_action')) {
+        processTakeAction();
+      }
+      // scroll to next element
+      scrollTo('#any_action_fieldset');
+    {% endif %}
+  }
+
+  function processTakeAction() {
+    // clicked on an answer to the take_action question, in any_action_fieldset
+    if (getFormValue('take_action') === 'Yes') {
+      $('#action_fieldset').show();
+
+      // initially hide everything below:
+      $('#prediction_fieldset').hide();
+      $('#feedback-table').hide();  // will work only for /labelone
+      $('input[name="submit"]').hide();
+
+      // show other things based on previous answers
+      if (getFormValue('judgment_remove')) {
+        processEndOfActions();
+      }
+
+      // scroll to next element
+      scrollTo('#action_fieldset');
+    } else {
+      $('#action_fieldset').hide();
+
+      // show prediction questions section
+      processEndOfActions();
+
+      // scroll to next element
+      scrollTo('#prediction_fieldset');
+    }
+  }
+
+  function processEndOfActions(){
+    // clicked on something in the last part of action_fieldset
+    $('#prediction_fieldset').show();
+
+    if (labelonePage) {
+      if (donePressed) {
+        $('#feedback-table').show();  // will work only for /labelone
+        $('input[name="submit"]').show();
+      } else {
+        $('#feedback-table').hide();  // will work only for /labelone
+      }
+    } else {
+      $('input[name="submit"]').show();
+    }
+
+    scrollTo('#id_id_take_action_0_1');
+  }
+
+  function validation() {
+    let ok = true;
+    ['remove', 'reduce', 'inform'].forEach(function (key) {
+      if ($('#your_' + key).text() === "No prediction") {
+        $('#predict_' + key + '_error').show();
+        ok = false;
+      } else {
+        $('#predict_' + key + '_error').hide();
+      }
+    });
+    return ok;
+  }
+
+  function prediction_string(ct) {
+    return ct + ' out of 100 (' + ct + '%)'
+  }
+
+  $(document).ready(function() {
+    $('#id_predict_remove').change(function () {
+      $('#your_remove').text(prediction_string($('#id_predict_remove').val()));
+    });
+    $('#id_predict_reduce').change(function () {
+      $('#your_reduce').text(prediction_string($('#id_predict_reduce').val()));
+    });
+    $('#id_predict_inform').change(function () {
+      $('#your_inform').text(prediction_string($('#id_predict_inform').val()));
+    });
+    $('#form').submit(function(event){
+      if (prediction_validation_on && !validation()){
+        alert("Please check for missing predictions");
+        event.preventDefault();
+      }
+    });
+
+    processJudgment(true);  // initial run
+    {% if form.errors %}
+      if(validation()) {
+        if (labelonePage) {
+          $('#feedback-table').show();  // will work only for /labelone
+          donePressed = true;
+        }
+        $('input[name="submit"]').show();
+      }
+    {% endif %}
+  });
+
+</script>

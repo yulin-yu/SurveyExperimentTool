@@ -1,0 +1,20 @@
+{% extends 'workflow/base.html' %}
+
+{% block extra_loads %}
+    {% load crispy_forms_tags %}
+{% endblock %}
+
+{% block content %}
+    <form id="form" method="post" {% block action %}{% endblock %}>
+        {% csrf_token %}
+        <table style="width:100px">
+            {% block form_content %}
+                {% crispy form %}
+            {% endblock %}
+        </table>
+        {% block submit_button %}
+            <input type="submit" id="submit" class="btn btn-success"
+                   value="{% block submit_button_title %}Submit{% endblock %}">
+        {% endblock %}
+    </form>
+{% endblock %}

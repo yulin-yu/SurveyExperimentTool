@@ -1,0 +1,24 @@
+<table class="table table-bordered hidden mt-2" id="feedback-table">
+    <thead>
+        <tr>
+            <th colspan="3">Feedback (use to improve your predictions on future items)</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>You Predicted</th>
+            <th>Actual Judgements so far</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if ab_group == 'A' %}
+            {% include 'workflow/mturk/sub/feedback_row.html' with class='inform' data=inform %}
+            {% include 'workflow/mturk/sub/feedback_row.html' with class='reduce' data=reduce %}
+        {% elif ab_group == 'B' %}
+            {% include 'workflow/mturk/sub/feedback_row.html' with class='reduce' data=reduce %}
+            {% include 'workflow/mturk/sub/feedback_row.html' with class='inform' data=inform %}
+        {% else %}
+            <tr><td colspan="3" class="invalid-feedback">Internal error: Invalid ab_group value</td></tr>
+        {% endif %}
+        {% include 'workflow/mturk/sub/feedback_row.html' with class='remove' data=remove %}
+    </tbody>
+</table>

@@ -1,0 +1,11 @@
+.invalid-feedback {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.asteriskField {
+    display: none;
+}

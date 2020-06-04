@@ -1,0 +1,28 @@
+{% extends 'workflow/base_form.html' %}
+
+{% block header %}
+    Qualification
+{% endblock %}
+
+{% block content %}
+    <div>
+        Welcome. To complete this qualification task, you will:
+        <ul>
+            <li>Assess a news item, paying close attention to the instructions</li>
+            <li>Complete a quiz on the instructions</li>
+            <li>Consent to participate as a labeler in this research study</li>
+            <li>Complete a quiz on political knowledge</li>
+            <li>Complete a survey about you</li>
+        </ul>
+    </div>
+    <p>
+        If you fail one of the quizzes, we will pay you for this HIT,
+        but you will not be able to do any of our other interesting and well-paying labeling tasks.
+    </p>
+
+    {{ block.super }}
+{% endblock %}
+
+{% block submit_button_title %}
+    Get Started
+{% endblock %}

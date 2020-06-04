@@ -1,0 +1,18 @@
+{% extends 'workflow/mturk_submit_form.html' %}
+
+{% block header %}
+    Thank You
+{% endblock %}
+
+{% block content %}
+    <p>
+        We regret that we will not be able to include you in our panel of labelers.
+        You will still be paid for your time working on this qualification HIT.
+    </p>
+
+    {{ block.super }}
+{% endblock %}
+
+{% block submit_button_title %}
+    Done
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'workflow/mturk_submit_form.html' %}
+
+{% block header %}
+    Sending to MTurk...
+{% endblock %}
+
+{% block post_content %}
+    <script>
+        $(document).ready(function() {
+            $('#submit').click();
+        });
+    </script>
+
+    {{ block.super }}
+{% endblock %}

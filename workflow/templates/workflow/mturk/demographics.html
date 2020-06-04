@@ -1,0 +1,36 @@
+{% extends 'workflow/base_form.html' %}
+
+{% block header %}
+    Demographics
+{% endblock %}
+
+{% block post_content %}
+    {{ block.super }}
+
+    <script>
+      $('#id_id_polaf_0_1').parent().parent().hide();
+      $('#id_id_polid_0_1').parent().parent().hide();
+
+
+      $('#div_id_polid_other').hide();
+      $('#div_id_gender_other').hide();
+
+      $('#div_id_polaf input').click(function () { toggleOtherInput('polaf', 9); });
+      $('#div_id_polid input').click(function () { toggleOtherInput('polid', 9); });
+      $('#div_id_gender input').click(function () { toggleOtherInput('gender', 5); });
+
+      function toggleOtherInput(field, button_num) {
+        let $otherInput = $('#div_id_' + field + '_other');
+        let isOtherSelected = $('#id_id_' + field + '_0_' + button_num + ':checked').val();
+        if (isOtherSelected) {
+          $otherInput.show();
+        } else {
+          $otherInput.hide();
+        }
+      }
+    </script>
+{% endblock %}
+
+{% block submit_button_title %}
+    Next
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'workflow/base_form.html' %}
+
+{% block extra_loads %}
+    {% load static %}
+    {% load staticfiles %}
+    {% load crispy_forms_tags %}
+
+    <script src="{% static 'workflow/js/rangeslider.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'workflow/css/rangeslider.css' %}">
+{% endblock %}
+
+{% block header %}
+    Training Item
+{% endblock %}
+
+{% block content %}
+    <div class="label_form">
+        {% include 'workflow/mturk/sub/workflow_subform.html' with form=label_form %}
+        {% include 'workflow/mturk/sub/feedback_table.html' %}
+    </div>
+
+    <h2 class="mt-5" id="quiz">Quiz about Instructions</h2>
+    <i>
+        Note: you can <b>scroll up to see the instructions</b> when answering the following questions.
+    </i>
+    {% if object.second_attempt %}
+        <div class="invalid-feedback">
+            One or more of your answers was incorrect.
+            You have one more chance to get it correct.
+        </div>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}
+
+{% block post_content %}
+    <style>
+        legend {
+            font-size: 16px;
+        }
+    </style>
+
+    <script>
+      let labelonePage = false;  // we aren't on the /labelone page
+    </script>
+
+    {% include 'workflow/mturk/sub/workflow_form_blocks_js.html' %}
+
+    <script>
+    $( document ).ready(function() {
+
+      $('#assessment_fieldset').show();
+      $('#any_action_fieldset').show();
+      $('#action_fieldset').show();
+      $('#prediction_fieldset').show();
+      $('#feedback-table').show();  // will work only for /labelone
+
+      $('.label_form input').prop("disabled", true);
+      $([document.documentElement, document.body]).scrollTop($("#quiz").offset().top);
+
+      const defaultFields = [
+        '#id_id_pay_attention_to_others_on_judgment_0_1',
+        '#id_id_pay_attention_to_others_on_prediction_0_1',
+        '#id_id_labeling_hit_duration_0_1',
+      ];
+      defaultFields.forEach(function (field) {
+        $(field).parent().parent().hide();
+      });
+
+      const otherFields = [
+        '#id_id_pay_attention_to_others_on_judgment_0_2',
+        '#id_id_pay_attention_to_others_on_judgment_0_3',
+        '#id_id_pay_attention_to_others_on_judgment_0_4',
+        '#id_id_pay_attention_to_others_on_prediction_0_2',
+        '#id_id_pay_attention_to_others_on_prediction_0_3',
+        '#id_id_pay_attention_to_others_on_prediction_0_4',
+        '#id_id_labeling_hit_duration_0_2',
+        '#id_id_labeling_hit_duration_0_3',
+        '#id_id_labeling_hit_duration_0_4',
+      ];
+      otherFields.forEach(function(field) {
+        $(field).attr('required', 'required');
+      });
+    });
+    </script>
+
+    {% include 'workflow/mturk/sub/range_slider_js.html' %}
+{% endblock %}
+
+{% block submit_button_title %}
+    Done with Quiz
+{% endblock %}

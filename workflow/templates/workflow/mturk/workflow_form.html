@@ -1,0 +1,65 @@
+{% extends 'workflow/base_form.html' %}
+
+{% block extra_loads %}
+    {% load static %}
+    {% load staticfiles %}
+    {% load crispy_forms_tags %}
+
+    <script src="{% static 'workflow/js/rangeslider.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'workflow/css/rangeslider.css' %}">
+{% endblock %}
+
+{% block header %}
+    Workflow
+{% endblock %}
+
+{% block content %}
+    <form method="post" id="form">
+        {% csrf_token %}
+
+        {% include 'workflow/mturk/sub/workflow_subform.html' %}
+
+        {% block submit_button %}
+            {% include 'workflow/mturk/sub/feedback_table.html' %}
+            <input type="submit" name="submit" value="Done with labeling"
+                   id="submit" class="btn btn-success hidden">
+        {% endblock %}
+
+        {% if form.errors %}
+            <p class="invalid-feedback">
+                Please check for required fields that you might have missed.
+            </p>
+        {% endif %}
+    </form>
+{% endblock %}
+
+{% block post_content %}
+    <style>
+        th {
+            text-align: center;
+        }
+        #div_id_judgment_misleading_item div div:last-child,
+        #div_id_take_action div div:last-child
+        {
+            margin-top: 6px;
+        }
+    </style>
+
+    {% block custom_scripts %}
+      <script>
+        let labelonePage = false;  // we aren't on the /labelone page
+      </script>
+    {% endblock %}
+
+    {% include 'workflow/mturk/sub/workflow_form_blocks_js.html' %}
+
+    <script>
+      $('input[name="misinformation_harm"]').click(processMisinformationHarm);
+      $('input[name="take_action"]').click(processTakeAction);
+      $('input[name="judgment_remove"]').click(processEndOfActions);
+    </script>
+
+    {% include 'workflow/mturk/sub/range_slider_js.html' %}
+
+    {{ block.super }}
+{% endblock %}
