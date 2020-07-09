@@ -417,7 +417,12 @@ class TestForm(ModelForm):   # new
         widgets = {
             'select': forms.RadioSelect(attrs={"required": "required"}),
             'select1': forms.RadioSelect(attrs={"required": "required"}),
-            'select2': forms.RadioSelect(attrs={"required": "required"}), #how display
+            'select2': forms.RadioSelect(attrs={"required": "required"}),
+            'select3': forms.RadioSelect(attrs={"required": "required"}),
+            'select4': forms.RadioSelect(attrs={"required": "required"}),
+            'select5': forms.RadioSelect(attrs={"required": "required"}),
+            'select6': forms.RadioSelect(attrs={"required": "required"}),
+            'selecttime': forms.HiddenInput(),
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -436,6 +441,7 @@ In this training, we want you to label if the statement is civic or uncivil. we 
             Fieldset(
                 'question1',
                 'select',
+                'selecttime',
             ),
             Fieldset(
                 'We label threats of violence and wishing physical or emotional harm on others as uncivil. Please label these comments as uncivil even if you are sympathetic to the writer’s position or think that the incivility is justified.',
@@ -445,14 +451,47 @@ In this training, we want you to label if the statement is civic or uncivil. we 
                 'select1',
             ),
             Fieldset(
-                'We label threats of violence and wishing physical or emotional harm on others as uncivil. Please label these comments as uncivil even if you are sympathetic to the writer’s position or think that the incivility is justified.',
+                'You should label critiques of another person’s education, intelligence, maturity, or personal experience as uncivil when they discourage someone from contributing to the conversation, exploring an idea, or articulating a perspective. This comment is uncivil because it implies that another person doesn’t know enough to speak on the topic. The problem is not with the suggestion that relevant expertise exists, but with implying that only people with this expertise have anything worth saying. ',
+            ),
+            Fieldset(
+                '',
+                'reflect1',
             ),
             Fieldset(
                 'question3',
                 'select2',
             ),
             Fieldset(
-                'You should label critiques of another person’s education, intelligence, maturity, or personal experience as uncivil when they discourage someone from contributing to the conversation, exploring an idea, or articulating a perspective. This comment is uncivil because it implies that another person doesn’t know enough to speak on the topic. The problem is not with the suggestion that relevant expertise exists, but with implying that only people with this expertise have anything worth saying. ',
+                "You labeled this comment as uncivil. We agreed. We label sarcasm as uncivil when it is intended to insult an individual, an idea, or those that agree with an idea. This commenter is using sarcasm to criticize Canada’s former immigration policy and, presumably, the people who supported that policy.",
+            ),
+
+            Fieldset(
+                'question4',
+                'select3',
+            ),
+            Fieldset(
+                'The comment is critical of Sanders’ supporters, implying that they don’t know how to read poll data, but it doesn’t use name calling, and it offers evidence to support the criticism. Remember, you do not have to find the evidence convincing. Be careful, though. The comment would be uncivil if it said, “I think Sanders’ supporters are ignorant”—that’s name calling—or “Not a single one of them understands how polls work”—that’s an insulting over generalization.     Also, you may have noticed that comments aren’t always easy to understand. They may include spelling mistakes or grammatical errors. Please take your time reading, and try to understand what the person who posted it meant.',
+            ),
+            Fieldset(
+                'question5',
+                'select4',
+            ),
+            Fieldset(
+                'We label comments as uncivil if they are meant to shut down the conversation. A person might do this directly, by telling others to shut up. However, this comment works in a more subtle way. The commenter says that there’s no way that anyone could make a valid argument in favor of current immigration policies. Even if you agree, you should label this uncivil because the commenter is trying to prevent further discussion. It is not uncivil to point out logical flaws or lack of evidence for a claim. As with many of the examples above, commenters can choose civil or uncivil ways of making the same points.',
+            ),
+            Fieldset(
+                'question6',
+                'select5',
+            ),
+            Fieldset(
+                'We do not label comments uncivil just because someone admits to hating a person, an idea, or people who agree with that idea. But please read carefully to see if they justify this disagreement in an uncivil way. Remember, it is always uncivil to use name calling or over generalization without evidence. In this case, we only know that the commenter feels strongly. Think of it this way: a civil conversation should be able to include people who despise one another. A Nazi and a Jew, or a gay person and a homophobe, should be able to speak civilly, despite their strong negative feelings for one another. This is also a good reminder that comments can be very short. If you don’t have enough context to understand what the comment means, you should label it civil.',
+            ),
+            Fieldset(
+                'question7',
+                'select6',
+            ),
+            Fieldset(
+                'Some comments seem easy to label at first glance. In this case, it may be tempting to assume that the comment is making fun of someone, perhaps suggesting that a male candidate would give up his masculine identity in order to win votes. But you should ask yourself whether it is possible that the comment was intended civilly. Perhaps the comment was literally referring to a man undergoing a gender transition. This may be unlikely, but without more information we cannot rule it out. Think carefully about whether a comment is clearly uncivil. If you aren’t sure, label it civil. Remember, even well-intentioned comments can come across the wrong way without context. Your job is to look deeper.  ',
             ),
 
         )

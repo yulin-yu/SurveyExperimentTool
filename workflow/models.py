@@ -671,7 +671,7 @@ class TestAnswer(models.Model):
     rater = models.ForeignKey('Rater', on_delete=models.CASCADE) # which user answer which question
 
     select = models.CharField(
-        max_length=5,
+        max_length=10,
         verbose_name="Of course I hope he suffers. He not only hates gay men, but he targets LGBT children, who already have a high rate of homelessness and mental health issues caused by stress. He supports “conversion therapy,” a form of torture. He would allow local grocery stores and restaurants to refuse to serve an LGBT person, which would disproportionately impact rural LGBT youth. If there were a way to knock some empathy into him, I wish someone would do it. Why am I supposed to want to protect someone who seeks to hurt us?" ,
         choices=(
     (None, ''),
@@ -691,8 +691,8 @@ class TestAnswer(models.Model):
     #    verbose_name="Of course I hope he suffers. He not only hates gay men, but he targets LGBT children, who already have a high rate of homelessness and mental health issues caused by stress. He supports “conversion therapy,” a form of torture. He would allow local grocery stores and restaurants to refuse to serve an LGBT person, which would disproportionately impact rural LGBT youth. If there were a way to knock some empathy into him, I wish someone would do it. Why am I supposed to want to protect someone who seeks to hurt us?"   # need to change this?
     #    )
     select1 = models.CharField(
-        max_length=5,
-        verbose_name="What are you referring to? I'm not sure how to interpret 'the infrastructure' that you're referencing?" ,
+        max_length=10,
+        verbose_name="You give me all these moral arguments about social welfare and the economy. However, all of the actual economists I know (including ones from Oxford University) are libertarians. Perhaps you just aren’t educated enough to talk about this issue?" ,
         choices=(
     (None, ''),
     ('Uncivil', 'Uncivil: The comment criticizes other people or their ideas in insulting ways, argues that people who disagree with them should suffer, or tells them to stop expressing opinions.'),
@@ -703,14 +703,75 @@ class TestAnswer(models.Model):
     )
 
     select2 = models.CharField(
-        max_length=5,
-        verbose_name="why not both? edit: also lots of people don't have the time or resources to be as involved in grass-roots activism and as such the only way they can feasibly voice their democratic opinion is a vote?" ,
+        max_length=10,
+        verbose_name="[Canada to lift visa requirements for Mexico](http://www.pm.gc.ca/eng/news/2016/06/28/canada-lift-visa-requirements-mexico) Holy crap, immigration policy can *evolve*? What a wild concept." ,
         choices=(
     (None, ''),
     ('Uncivil', 'Uncivil: The comment criticizes other people or their ideas in insulting ways, argues that people who disagree with them should suffer, or tells them to stop expressing opinions.'),
     ('Civil', 'Civil: The comment is not uncivil – it takes a stance, even a strong one, without attacking people who disagree or arguing that they should stop talking.'),
 
         ),
+        null=True, blank=True,
+    )
+
+    select3 = models.CharField(
+        max_length=10,
+        verbose_name="The funny thing about Michigan is that it had a 99% certainty, which would mean you would expect it to get called wrong roughly once every 100 times. Well as it happens, that's almost exactly the record that places like fivethirtyeight have had: giving one incorrect result out of the few hundred they've made predictions on. So at no point should anybody suspect that the polling is systematically failing. And yet so so so many Bernie supporters pull out poll data on Bernie's side like it was some kind of Trump card. I read an editorial making the same flawed point yesterday and I just read three people making that flawed argument, today!" ,
+        choices=(
+    (None, ''),
+    ('Uncivil', 'Uncivil: The comment criticizes other people or their ideas in insulting ways, argues that people who disagree with them should suffer, or tells them to stop expressing opinions.'),
+    ('Civil', 'Civil: The comment is not uncivil – it takes a stance, even a strong one, without attacking people who disagree or arguing that they should stop talking.'),
+
+        ),
+        null=True, blank=True,
+    )
+
+    select4 = models.CharField(
+        max_length=10,
+        verbose_name="I don’t get how any sane person could argue that immigration isn’t a problem. Over half a million competent well paid technical people were displaced by H1B visa workers in the last few years. Those displaced workers either are still unemployed, or underemployed, and thanks to losing their jobs, collected unemployment benefits. There’s no way that pro-immigration people can argue that American citizens should continue to support these lax immigration policies. " ,
+        choices=(
+    (None, ''),
+    ('Uncivil', 'Uncivil: The comment criticizes other people or their ideas in insulting ways, argues that people who disagree with them should suffer, or tells them to stop expressing opinions.'),
+    ('Civil', 'Civil: The comment is not uncivil – it takes a stance, even a strong one, without attacking people who disagree or arguing that they should stop talking.'),
+
+        ),
+        null=True, blank=True,
+    )
+
+    select5 = models.CharField(
+        max_length=10,
+        verbose_name=" I detest Hillary Clinton and the people who voted for her.  " ,
+        choices=(
+    (None, ''),
+    ('Uncivil', 'Uncivil: The comment criticizes other people or their ideas in insulting ways, argues that people who disagree with them should suffer, or tells them to stop expressing opinions.'),
+    ('Civil', 'Civil: The comment is not uncivil – it takes a stance, even a strong one, without attacking people who disagree or arguing that they should stop talking.'),
+
+        ),
+        null=True, blank=True,
+    )
+
+    select6 = models.CharField(
+        max_length=10,
+        verbose_name="By the time he made it to the top, his gender transition would be complete." ,
+        choices=(
+    (None, ''),
+    ('Uncivil', 'Uncivil: The comment criticizes other people or their ideas in insulting ways, argues that people who disagree with them should suffer, or tells them to stop expressing opinions.'),
+    ('Civil', 'Civil: The comment is not uncivil – it takes a stance, even a strong one, without attacking people who disagree or arguing that they should stop talking.'),
+
+        ),
+        null=True, blank=True,
+    )
+    reflect1 = models.CharField(
+        max_length=500,
+        verbose_name="input sth" ,
+        null=True, blank=True,
+    )
+
+    created_at = models.DateTimeField(null=True, auto_now_add=True)
+
+    selecttime = models.CharField(
+        max_length=500,
+        verbose_name="input sth" ,
         null=True, blank=True,
     )
 

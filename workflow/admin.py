@@ -11,7 +11,7 @@ from workflow.models import ReduceChoices, QuizAnswer, \
     JudgmentRequirementChoices, CorroboratingChoices, Item, Rater, \
     LabelingAnswer, ItemWorkflow, Workflow, Assignment, InformChoices, \
     RemoveChoices, Qualification, ItemURLs, ConsentAnswer, DemographicsAnswer,\
-    KnowledgeAnswer, ItemAnswers, RedirectLinkClicked
+    KnowledgeAnswer, ItemAnswers, RedirectLinkClicked,TestAnswer
 from workflow.services.mturk import mturk
 
 
@@ -19,6 +19,10 @@ from workflow.services.mturk import mturk
 class WorkflowAdmin(admin.ModelAdmin):
     change_list_template = 'workflow/admin.html'
 
+@admin.register(TestAnswer)
+class TestAnswer(admin.ModelAdmin):
+    list_display = ("created_at",)
+    readonly_fields = ("created_at", )
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):

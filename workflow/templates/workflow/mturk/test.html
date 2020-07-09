@@ -18,8 +18,8 @@
 
     <script>
       let questions = $('fieldset').length;
+      let startTime = new Date();
       let answered = 0;
-      // let timeoutNumber = 15 * 1000;  // 15 seconds
 
       $('#id_id_pk_1_0_1').parent().parent().hide();
       $('#id_id_pk_2_0_1').parent().parent().hide();
@@ -28,6 +28,10 @@
 
       $('#submit').click(function (e) {
         $('#submit').val('Next');
+        let finishTime = new Date();
+        let delta = finishTime - startTime; 
+        alert(delta);
+        startTime = new Date();
         return nextQuestion();
       });
 
@@ -36,18 +40,12 @@
         if (answered < questions) {
           $('fieldset').css('display', 'none');
           $('fieldset:nth-child(' + (answered + 2) + ')').css('display', 'block ');
-          clearTimeout(timeoutID);
-          timeoutID = setTimeout(intervalNextQuestion, timeoutNumber);
           return false
         }
+        alert("hi");
         return true
       }
 
-      function intervalNextQuestion() {
-        if (nextQuestion()) {
-          $('#submit').click();
-        }
-      }
 
     let timeoutID = null;
     </script>

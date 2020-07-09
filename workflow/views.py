@@ -180,7 +180,7 @@ class FeedbackMixin:
         return context
 
 
-decorators = [login_required, rater_required, xframe_options_exempt,
+decorators = [login_required, rater_required, #xframe_options_exempt,
               csrf_exempt]
 
 
@@ -500,7 +500,7 @@ class TestView(SaveAnswerMixin, RaterWorkflowMixin, CreateView):  # might need t
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            'correct_answers': ['Civil','Civil','Uncivil'],  #infomration of correct answer
+            'correct_answers': ['Civil','Civil','Uncivil','Civil','Civil','Uncivil','Civil'],  #infomration of correct answer
         })
         return context
 
